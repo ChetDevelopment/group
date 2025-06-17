@@ -3,10 +3,135 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Personal Profile</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+            text-align: center;
+            padding: 20px;
+        }
+        .container {
+            max-width: 500px;
+            margin: auto;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .profile-container {
+            display: inline-block;
+            position: relative;
+        }
+        .profile-img {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid #ffcc00;
+        }
+        .upload-button {
+            position: absolute;
+            bottom: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(0, 0, 0, 0.7);
+            color: white;
+            padding: 5px 10px;
+            font-size: 12px;
+            border-radius: 5px;
+            cursor: pointer;
+            display: none;
+        }
+        .profile-container:hover .upload-button {
+            display: block;
+        }
+        input[type="file"] {
+            display: none;
+        }
+        .grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            text-align: left;
+        }
+        .label {
+            background: #ffd700;
+            padding: 10px;
+            border-radius: 5px;
+            font-weight: bold;
+        }
+        .input input {
+            width: 90%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background: #fff;
+        }
+        .title {
+            font-size: 24px;
+            font-weight: bold;
+            color: #2a5db0;
+            margin-bottom: 20px;
+        }
+        
+    </style>
 </head>
 <body>
-    <h1>I love </h1>
-    
+    <div class="container">
+        <div class="profile-container">
+            <div class="img">
+                <img id="profilePicture" src="defualt-profile.png " class="profile-img">
+            </div>
+
+            <!-- <img id="profilePicture" src="default-profile.png" alt="Profile Picture" class="profile-img"> -->
+            <label for="fileInput" class="upload-button">Change Picture</label>
+            <input type="file" id="fileInput" accept="image/*">
+        </div>
+        <div class=""></div>
+        <div class="title">PERSONAL PROFILE</div>
+        
+        <div class="grid">
+            <div class="label">First Name</div>
+            <div class="input"><input type="text"></div>
+            
+            <div class="label">Last Name</div>
+            <div class="input"><input type="text"></div>
+            
+            <div class="label">Birthday</div>
+            <div class="input"><input type="date"></div>
+            
+            <div class="label">Parents' Names</div>
+            <div class="input"><input type="text"></div>
+            
+            <div class="label">Parents' Contact</div>
+            <div class="input"><input type="text"></div>
+            
+            <div class="label">House Address</div>
+            <div class="input"><input type="text"></div>
+            
+            <div class="label">School</div>
+            <div class="input"><input type="text"></div>
+            
+            <div class="label">Grade</div>
+            <div class="input"><input type="text"></div>
+        </div>
+    </div>
+    <script>
+        const fileInput = document.getElementById("fileInput");
+        const profilePicture = document.getElementById("profilePicture");
+
+        fileInput.addEventListener("change", function(event) {
+            const file = event.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    profilePicture.src = e.target.result;
+                };
+                reader.readAsDataURL(file);
+            }
+        });
+    </script>
 </body>
 </html>
